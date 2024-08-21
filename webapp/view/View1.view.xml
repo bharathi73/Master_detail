@@ -1,0 +1,82 @@
+<mvc:View controllerName="com.techm.masterdetail.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:f="sap.ui.layout.form"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>Order Summary Master Detail}">
+        <content />
+        <SplitContainer id="SplitCont" initialMaster="master" initialDetail="orderDetail">
+            <detailPages>
+                <Page id="orderDetail" title="Order Details">
+                <Table id="orderTable" items="{/Order_Details}">
+                    <columns>
+                        <Column>
+                            <Text text="Order ID"></Text>
+                        </Column>
+                        <Column>
+                            <Text text="Product ID"></Text>
+                        </Column>
+                        <Column>
+                            <Text text="Unit Price"></Text>
+                        </Column>
+                        <Column>
+                            <Text text="Quantity"></Text>
+                        </Column>
+                        <Column>
+                            <Text text="Discount"></Text>
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem type="Navigation" press="onPressOrderDetail">
+                            <cells>
+                                <Text text="{OrderID}"></Text>
+                                <Text text="{ProductID}"></Text>
+                                <Text text="{UnitPrice}"></Text>
+                                <Text text="{Quantity}"></Text>
+                                <Text text="{Discount}"></Text>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                </Page>
+                <Page id="productDetail" title="Product" showNavButton="true" navButtonPress="onProductBack">
+                    <VBox >
+                        <f:SimpleForm id="productForm" editable="false"
+			            layout="ResponsiveGridLayout"
+			            labelSpanXL="3"
+			            labelSpanL="3"
+			            labelSpanM="3"
+			            labelSpanS="12"
+			            emptySpanXL="4"
+			            emptySpanL="4"
+			            emptySpanM="4"
+			            emptySpanS="0"
+			            columnsXL="1"
+			            columnsL="1"
+			            columnsM="1">
+                        <f:content>
+                            <Label text="Product Name"/>
+                            <Text text="{/ProductName}"/>
+                            <Label text="Supplier ID"/>
+                            <Text text="{/SupplierID}"/>
+                            <Label text="Quantity Per Unit"/>
+                            <Text text="{/QuantityPerUnit}"/>
+                            <Label text="Unit Price"/>
+                            <Text text="{/UnitPrice}"/>
+                        </f:content>
+                        </f:SimpleForm>
+                    </VBox>
+
+                </Page>
+            
+            </detailPages>
+            <masterPages>
+                <Page id="master" title="Order Master">
+                    <List id="OrderList" items="{/Orders}" itemPress="onListPress">
+                        <items>
+                            <StandardListItem title="{OrderID}" type="Navigation"></StandardListItem>
+                        </items>
+                    </List>
+                </Page>
+            </masterPages>
+        </SplitContainer>
+    </Page>
+</mvc:View>
